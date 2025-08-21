@@ -68,7 +68,7 @@ export async function downloadArticleList(params: IDownloadArticleListParams) {
         warnArticleCount += 1
         warnArticleInfo.push(progressItem)
       } else {
-        await mkdir(`${bookPath}/${pathTitleList.map(fixPath).join('/')}`, {recursive: true})
+        await mkdir(`${bookPath}/${pathTitleList.map(fixPath).join('/')}`, { recursive: true })
       }
       // 即是文档也是title则创建文件夹后不更新进度直接进行文档处理
       if (itemType === ARTICLE_CONTENT_TYPE.DOC) {
@@ -120,9 +120,10 @@ export async function downloadArticleList(params: IDownloadArticleListParams) {
         saveFilePath: path.resolve(bookPath, progressItem.path),
         uuid: item.uuid,
         articleUrl,
-        articleTitle: item.title,
+        articleTitle: item.title,        
         host,
-        imageServiceDomains
+        id: item.id,
+        imageServiceDomains,
       }
       const { isUpdateDownload } = await downloadArticle({
         articleInfo,
@@ -137,7 +138,7 @@ export async function downloadArticleList(params: IDownloadArticleListParams) {
           articleInfo
         })
       }
-    } catch(e) {
+    } catch (e) {
       isSuccess = false
       errArticleCount += 1
       errArticleInfo.push({

@@ -4,10 +4,10 @@ import ora, { type Ora } from 'ora'
 import mdImg from 'pull-md-img'
 import mdToc from 'markdown-toc'
 
-import { getDocsMdData } from '../api'
+import { getDocsMdData, requestDocExport, pollExportStatus, downloadExportedFile } from '../api'
 import { ARTICLE_CONTENT_TYPE, ARTICLE_CONTENT_MAP } from '../constant'
 import { fixLatex, fixMarkdownImage, fixPath } from '../parse/fix'
-import { parseSheet } from '../parse/sheet'
+// import { parseSheet } from '../parse/sheet'
 import { captureImageURL } from '../crypto'
 import { formateDate, getMarkdownImageList, isValidDate } from '../utils'
 
@@ -37,6 +37,8 @@ export async function downloadArticle(params: DownloadArticleParams): Promise<Do
     token,
     host,
     key,
+    itemUrl: articleUrl,
+    id: articleInfo.id,
   }
   const { httpStatus, apiUrl, response } = await getDocsMdData(reqParams)
 
@@ -56,26 +58,60 @@ export async function downloadArticle(params: DownloadArticleParams): Promise<Do
   let mdData = ''
   /** 表格类型 */
   if (contentType === ARTICLE_CONTENT_TYPE.SHEET) {
-    const {response} = await getDocsMdData(reqParams, false)
+    // const { response } = await getDocsMdData(reqParams, false)
+    // try {
+    //   const rawContent = response?.data?.content
+    //   const content = rawContent ? JSON.parse(rawContent) : {}
+    //   const sheetData = content?.sheet
+    //   mdData = sheetData ? parseSheet(sheetData) : ''
+    //   // 表格类型默认忽略图片
+    //   // ignoreImg = true
+    //   // TODO 表格类型中插入图表 vessels字段
+    // } catch (e) {
+    //   const notSupportType = ARTICLE_CONTENT_MAP.get(contentType)
+    //   throw new Error(`download article Error: “${notSupportType}”解析错误 ${e}`)
+    // }
+    // const notSupportType = ARTICLE_CONTENT_MAP.get(contentType)
+    // throw new Error(`download article Error: 暂不支持“${notSupportType}”的文档`)
     try {
-      const rawContent = response?.data?.content
-      const content = rawContent ? JSON.parse(rawContent) : {}
-      const sheetData = content?.sheet
-      mdData = sheetData ? parseSheet(sheetData) : ''
-      // 表格类型默认忽略图片
-      // ignoreImg = true
-      // TODO 表格类型中插入图表 vessels字段
-    } catch(e) {
+      await downloadSheetAsExcel(reqParams, saveFilePath, articleTitle, progressBar)
+      return {
+        needDownload,
+        isUpdateDownload,
+        isDownloadFinish: true
+      }
+    } catch (e) {
       const notSupportType = ARTICLE_CONTENT_MAP.get(contentType)
-      throw new Error(`download article Error: “${notSupportType}”解析错误 ${e}`)
+      throw new Error(`download article Error: "${notSupportType}"导出失败 ${e.message || e}`)
     }
-  } else if ([
-      ARTICLE_CONTENT_TYPE.BOARD,
-      ARTICLE_CONTENT_TYPE.TABLE
-    ].includes(contentType)) {
+  } else if (contentType === ARTICLE_CONTENT_TYPE.TABLE) {
+    try {
+      await downloadSheetAsExcel(reqParams, saveFilePath, articleTitle, progressBar)
+      return {
+        needDownload,
+        isUpdateDownload,
+        isDownloadFinish: true
+      }
+    } catch (e) {
+      const notSupportType = ARTICLE_CONTENT_MAP.get(contentType)
+      throw new Error(`download article Error: "${notSupportType}"导出失败 ${e.message || e}`)
+    }
+  } else if (contentType == ARTICLE_CONTENT_TYPE.BOARD) {
     // 暂时不支持的文档类型
-    const notSupportType = ARTICLE_CONTENT_MAP.get(contentType)
-    throw new Error(`download article Error: 暂不支持“${notSupportType}”的文档`)
+    // const notSupportType = ARTICLE_CONTENT_MAP.get(contentType)
+    // throw new Error(`download article Error: 暂不支持“${notSupportType}”的文档`)
+    try {
+      await downloadBoardAsPng(reqParams, saveFilePath, articleTitle, progressBar)
+      await downloadBoardAsLakeboard(reqParams, saveFilePath, articleTitle, progressBar)
+      return {
+        needDownload,
+        isUpdateDownload,
+        isDownloadFinish: true
+      }
+    } catch (e) {
+      const notSupportType = ARTICLE_CONTENT_MAP.get(contentType)
+      throw new Error(`download article Error: "${notSupportType}"导出失败 ${e.message || e}`)
+    }
   } else if (typeof response?.data?.sourcecode !== 'string') {
     throw new Error(`download article Error: ${apiUrl}, http status ${httpStatus}`)
   } else {
@@ -185,7 +221,7 @@ export async function downloadArticle(params: DownloadArticleParams): Promise<Do
       })
       errorInfo = mdImgRes.errorInfo
       data = mdImgRes.data
-    } catch(e) {
+    } catch (e) {
       errorInfo = [e]
     }
     mdData = data
@@ -235,16 +271,16 @@ export async function downloadArticle(params: DownloadArticleParams): Promise<Do
       isUpdateDownload,
       isDownloadFinish: true
     }
-  } catch(e) {
+  } catch (e) {
     throw new Error(`${e.message}`)
   }
 }
 
-function handleMdData (
+function handleMdData(
   rawMdData: string,
   options: IHandleMdDataOptions,
 ): string {
-  const {articleTitle, articleUrl, toc, convertMarkdownVideoLinks, hideFooter} = options
+  const { articleTitle, articleUrl, toc, convertMarkdownVideoLinks, hideFooter } = options
   let mdData = rawMdData
 
   /**
@@ -263,7 +299,7 @@ function handleMdData (
    */
 
   mdData = mdData.replace(/<a.*?>(\s*?)<\/a>/gm, '')
-  const  header = articleTitle ? `# ${articleTitle}\n\n` : ''
+  const header = articleTitle ? `# ${articleTitle}\n\n` : ''
   // toc 目录添加
   let tocData = toc ? mdToc(mdData).content : ''
   if (tocData) tocData = `${tocData}\n\n---\n\n`
@@ -296,7 +332,7 @@ function handleVideoMd(mdData: string) {
 
 /** 检查当前是否是 是否增量下载 或者是否初次下载 */
 function checkProgressItemUpdate(progressItem: IProgressItem, oldProgressItem?: IProgressItem) {
-  const defaultRes =  {
+  const defaultRes = {
     isFirstDownload: true,
     isUpdateDownload: false,
     needDownload: true
@@ -326,3 +362,162 @@ function checkProgressItemUpdate(progressItem: IProgressItem, oldProgressItem?: 
   }
   return defaultRes
 }
+
+/** 下载表格类型文档为Excel文件 */
+async function downloadSheetAsExcel(
+  reqParams: { articleUrl: string, bookId: number, token?: string, key?: string, host?: string, itemUrl: string, id: number },
+  saveFilePath: string,
+  articleTitle: string,
+  progressBar: any
+) {
+
+  progressBar.pause()
+  let spinnerDiscardingStdin: Ora | undefined
+  console.log('')
+  if (env.NODE_ENV !== 'test') {
+    spinnerDiscardingStdin = ora({
+      text: `导出 "${articleTitle}" 表格为Excel中...`,
+      stream: stdout
+    })
+    spinnerDiscardingStdin.start()
+  }
+
+  try {
+    // 1. 请求导出
+    const exportResult = await requestDocExport(reqParams, 'excel')
+    if (exportResult.httpStatus !== 200) {
+      throw new Error(`导出请求失败: HTTP ${exportResult.httpStatus}`)
+    }
+
+    // 2. 轮询导出状态
+    const statusResult = await pollExportStatus(reqParams, 3, 2000, 'excel')
+    if (!statusResult.success) {
+      throw new Error(statusResult.error || '导出超时或失败')
+    }
+
+    // 3. 下载导出的文件
+    const fileResult = await downloadExportedFile(statusResult.url!, reqParams)
+
+    if (fileResult.httpStatus !== 200) {
+      throw new Error(`文件下载失败: HTTP ${fileResult.httpStatus}`)
+    }
+
+    // 4. 保存文件，将扩展名改为.xlsx
+    const excelFilePath = saveFilePath.replace(/\.md$/, '.xlsx')
+    await writeFile(excelFilePath, Buffer.from(fileResult.data))
+
+    if (spinnerDiscardingStdin) spinnerDiscardingStdin.stop()
+    progressBar.continue()
+
+    console.log(`✅ 表格已导出为Excel: ${excelFilePath}`)
+  } catch (error) {
+    if (spinnerDiscardingStdin) spinnerDiscardingStdin.stop()
+    progressBar.continue()
+    throw error
+  }
+}
+
+/** 下载画板文档为PNG文件 */
+async function downloadBoardAsPng(
+  reqParams: { articleUrl: string, bookId: number, token?: string, key?: string, host?: string, itemUrl: string, id: number },
+  saveFilePath: string,
+  articleTitle: string,
+  progressBar: any,
+) {
+
+  progressBar.pause()
+  let spinnerDiscardingStdin: Ora | undefined
+  console.log('')
+  if (env.NODE_ENV !== 'test') {
+    spinnerDiscardingStdin = ora({
+      text: `导出 "${articleTitle}" 画板为PNG中...`,
+      stream: stdout
+    })
+    spinnerDiscardingStdin.start()
+  }
+
+  try {
+    // 1. get coverurl
+    const { response } = await getDocsMdData(reqParams, false)
+    const coverUrl = response?.data?.cover
+    if (coverUrl == undefined || coverUrl == "") {
+      throw new Error(`没有获得图板URL`)
+    }
+
+    // 3. 下载导出的文件
+    const fileResult = await downloadExportedFile(coverUrl, reqParams)
+
+    if (fileResult.httpStatus !== 200) {
+      throw new Error(`文件下载失败: HTTP ${fileResult.httpStatus}`)
+    }
+
+    // 4. 保存文件，将扩展名改
+    const excelFilePath = saveFilePath.replace(/\.md$/, '.png')
+    await writeFile(excelFilePath, Buffer.from(fileResult.data))
+
+    if (spinnerDiscardingStdin) spinnerDiscardingStdin.stop()
+    progressBar.continue()
+
+    console.log(`✅ 画板已导出为Png: ${excelFilePath}`)
+  } catch (error) {
+    if (spinnerDiscardingStdin) spinnerDiscardingStdin.stop()
+    progressBar.continue()
+    throw error
+  }
+}
+
+
+/** 下载画板文档为 lakeboard 文件 */
+async function downloadBoardAsLakeboard(
+  reqParams: { articleUrl: string, bookId: number, token?: string, key?: string, host?: string, itemUrl: string, id: number },
+  saveFilePath: string,
+  articleTitle: string,
+  progressBar: any
+) {
+
+  progressBar.pause()
+  let spinnerDiscardingStdin: Ora | undefined
+  console.log('')
+  if (env.NODE_ENV !== 'test') {
+    spinnerDiscardingStdin = ora({
+      text: `导出 "${articleTitle}" 画板为 lakeboard 中...`,
+      stream: stdout
+    })
+    spinnerDiscardingStdin.start()
+  }
+
+  try {
+    // 1. 请求导出
+    const exportResult = await requestDocExport(reqParams, 'lakeboard')
+    if (exportResult.httpStatus !== 200) {
+      throw new Error(`导出请求失败: HTTP ${exportResult.httpStatus}`)
+    }
+
+    // 2. 轮询导出状态
+    const statusResult = await pollExportStatus(reqParams, 3, 2000, 'lakeboard')
+    if (!statusResult.success) {
+      throw new Error(statusResult.error || '导出超时或失败')
+    }
+
+    // 3. 下载导出的文件
+    const fileResult = await downloadExportedFile(statusResult.url!, reqParams)
+
+    if (fileResult.httpStatus !== 200) {
+      throw new Error(`文件下载失败: HTTP ${fileResult.httpStatus}`)
+    }
+
+    // 4. 保存文件，将扩展名改为.xlsx
+    const excelFilePath = saveFilePath.replace(/\.md$/, '.lakeboard')
+    await writeFile(excelFilePath, Buffer.from(fileResult.data))
+
+    if (spinnerDiscardingStdin) spinnerDiscardingStdin.stop()
+    progressBar.continue()
+
+    console.log(`✅ 画板已导出为 lakeboard: ${excelFilePath}`)
+  } catch (error) {
+    if (spinnerDiscardingStdin) spinnerDiscardingStdin.stop()
+    progressBar.continue()
+    throw error
+  }
+}
+

@@ -8,6 +8,9 @@ import { downloadArticleList } from './download/list'
 
 import type { ICliOptions, IProgressItem } from './types'
 
+// Export convert functionality for external use
+export { convertMarkdownImages } from './convert/index'
+
 export async function main(url: string, options: ICliOptions) {
   if (!isValidUrl(url)) {
     throw new Error('Please enter a valid URL')

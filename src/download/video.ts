@@ -125,7 +125,7 @@ export async function downloadVideo(params: Video.IDownloadVideo) {
       ]
 
       const promiseList = allList.map(async (item) => {
-        const fileName =  item.type === 'audio' ? item.videoInfo.fileName :  item.videoInfo.name
+        const fileName = item.type === 'audio' ? item.videoInfo.fileName : item.videoInfo.name
         const dlFileParams = {
           fileUrl: item.type === 'audio' ? item.videoInfo.audio : item.videoInfo.video,
           savePath: item.currentFilePath,
@@ -142,7 +142,7 @@ export async function downloadVideo(params: Video.IDownloadVideo) {
       const downloadFileInfo = await Promise.all(promiseList)
 
       downloadFileInfo.forEach(info => {
-        const astLinkNode = linkList.find(link => new RegExp(`#${info.id}`,'gm').test(link.node.url))
+        const astLinkNode = linkList.find(link => new RegExp(`#${info.id}`, 'gm').test(link.node.url))
         if (astLinkNode) {
           // TODO: 这里直接更改了ast 还需考虑
           astLinkNode.node.url = `${attachmentsDir}${path.sep}${info.fileName}`
@@ -197,8 +197,8 @@ function getVideoApi(params: Video.IGetVideoApiParams) {
   searchParams.set('video_id', videoId)
   apiUrl = `${apiUrl}?${searchParams.toString()}`
   return axios
-    .get<Video.IGetVideoApiResponse>(apiUrl, genCommonOptions({token, key}))
-    .then(({data, status}) => {
+    .get<Video.IGetVideoApiResponse>(apiUrl, genCommonOptions([{ token, key }], []))
+    .then(({ data, status }) => {
       const res = data.data
       if (status === 200 && res.status === 'success') {
         return res.info
@@ -215,7 +215,7 @@ async function getRealVideoInfo(
   downloadVideoParams: Video.IDownloadVideo,
   attachmentsDirPath: string
 ) {
-  const {key, token} = downloadVideoParams
+  const { key, token } = downloadVideoParams
   const parseVideoInfoPromiseList = videoLinkList.map(async link => {
     const videoInfo = perParseVideoInfo(link.node.url)
     if (!videoInfo) return false
@@ -225,7 +225,7 @@ async function getRealVideoInfo(
       token
     })
     if (!res) return false
-    const fileName =  videoInfo.name ?? videoInfo.videoId.split('/').at(-1) ?? videoInfo.videoId
+    const fileName = videoInfo.name ?? videoInfo.videoId.split('/').at(-1) ?? videoInfo.videoId
     return {
       videoInfo: {
         ...videoInfo,
@@ -269,7 +269,7 @@ async function getRealHtmlVudioInfo(
   attachmentsDirPath: string,
   type: 'video' | 'audio'
 ) {
-  const {key, token} = downloadVideoParams
+  const { key, token } = downloadVideoParams
   const parseVideoInfoPromiseList = videoLinkList.map(async videoItem => {
 
     const res = await getVideoApi({

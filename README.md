@@ -25,10 +25,12 @@ $ yuque-dl --help
   Commands:
     <url>                语雀知识库url
     server <serverPath>  启动web服务
+    convert <sourceDir>  将 markdown 文件中的图片转换为 base64 嵌入
 
   For more info, run any command with the `--help` flag:
     $ yuque-dl --help
     $ yuque-dl server --help
+    $ yuque-dl convert --help
 
   Options:
     -d, --distDir <dir>                  下载的目录
@@ -53,6 +55,57 @@ $ yuque-dl --help
 # url 为对应需要的知识库地址
 yuque-dl "https://www.yuque.com/yuque/thyzgp"
 ```
+
+### Convert 图片转换功能
+
+将已下载的 markdown 文件中的本地图片链接转换为 base64 编码嵌入，生成完全自包含的 markdown 文件。
+
+```bash
+# 基本用法：转换指定目录下的所有 markdown 文件
+yuque-dl convert ./download/知识库名称
+
+# 指定输出目录
+yuque-dl convert ./download/知识库名称 -o ./converted-docs
+
+# 覆盖已存在的输出目录
+yuque-dl convert ./download/知识库名称 --overwrite
+```
+
+#### Convert 命令选项
+
+```bash
+$ yuque-dl convert --help
+
+  Usage:
+    $ yuque-dl convert <sourceDir>
+
+  Options:
+    -o, --output <dir>  输出目录 (默认：<sourceDir>-base64)
+    --overwrite         覆盖已存在的输出目录 (默认值: false)
+    -h, --help          显示帮助信息
+```
+
+#### 功能特性
+
+- ✅ 自动扫描目录下的所有 markdown 文件
+- ✅ 支持多种图片格式（jpg, png, gif, svg, webp, bmp）
+- ✅ 智能处理相对路径和绝对路径
+- ✅ 跳过远程图片链接（http/https）
+- ✅ 保持原有目录结构
+- ✅ 详细的进度显示和统计信息
+- ✅ 完善的错误处理和警告提示
+
+#### 使用场景
+
+1. **文档分享**：生成完全自包含的 markdown 文件，无需额外的图片文件
+2. **文档备份**：将图片嵌入到 markdown 中，避免图片文件丢失
+3. **简化部署**：减少文件依赖，简化文档部署流程
+
+#### 注意事项
+
+- 转换后的文件会比原文件大（base64 编码会增加约 33% 的大小）
+- 大图片文件会显著增加 markdown 文件大小
+- 远程图片链接（http/https）不会被转换，会保持原样并记录警告
 
 ## Example
 
@@ -121,6 +174,7 @@ yuque-dl server ./download/知识库/
 - [x] 添加toc目录功能
 - [x] 添加测试
 - [x] 添加附件下载
+- [x] 图片转 base64 嵌入功能（convert 命令）
 - [ ] 支持其他文档类型？🤔
 - [ ] 直接打包成可执行文件 🤔
 
@@ -146,6 +200,27 @@ yuque-dl "https://www.yuque.com/yuque/thyzgp" -t="-a123"
 完全公开的知识库未登录的情况下查看附件:
 
 ![attachments](https://github.com/user-attachments/assets/6e764abf-0da6-4fb8-ab96-7d027830b291)
+
+3. Convert 命令相关问题
+
+**问题：转换后的文件很大**
+- 原因：base64 编码会增加约 33% 的文件大小
+- 解决方案：考虑只转换小图片，或者使用压缩工具处理图片
+
+**问题：某些图片没有被转换**
+- 可能原因：
+  - 图片文件不存在或路径错误
+  - 图片是远程链接（http/https），会被跳过
+  - 图片格式不支持
+- 解决方案：检查控制台的警告信息，确认图片路径和格式
+
+**问题：输出目录已存在**
+- 解决方案：使用 `--overwrite` 参数强制覆盖，或手动删除输出目录
+
+```bash
+# 强制覆盖已存在的输出目录
+yuque-dl convert ./download/知识库名称 --overwrite
+```
 
 ## Tips
 

@@ -32,6 +32,7 @@ describe('downloadArticle', () => {
       articleUrl: 'https://www.yuque.com/yuque/base1/one',
       itemUrl: 'one',
       bookId: 1111,
+      id: 1111,
       imageServiceDomains: ['gxr404.com']
     }
     const progressItem = {} as any
@@ -73,6 +74,7 @@ describe('downloadArticle', () => {
       articleUrl: 'https://www.yuque.com/yuque/base1/one',
       itemUrl: 'sourcecodeNull',
       bookId: 1111,
+      id: 1111,
       imageServiceDomains: ['gxr404.com']
     }
 
@@ -103,6 +105,7 @@ describe('downloadArticle', () => {
       articleUrl: 'https://www.yuque.com/yuque/base1/one',
       itemUrl: 'board',
       bookId: 1111,
+      id:1111,
       imageServiceDomains: ['gxr404.com']
     }
     const requestPromise = downloadArticle({
@@ -131,6 +134,7 @@ describe('downloadArticle', () => {
       articleUrl: 'https://www.yuque.com/yuque/base1/one',
       itemUrl: 'table',
       bookId: 1111,
+      id: 1111,
       imageServiceDomains: ['gxr404.com']
     }
     const requestPromise = downloadArticle({
@@ -159,9 +163,31 @@ describe('downloadArticle', () => {
       articleUrl: 'https://www.yuque.com/yuque/base1/one',
       itemUrl: 'sheet',
       bookId: 1111,
+      id: 1111,
       imageServiceDomains: ['gxr404.com']
     }
-    await downloadArticle({
+    // await downloadArticle({
+    //   articleInfo,
+    //   progressBar: {
+    //     pause: vi.fn(),
+    //     continue: vi.fn()
+    //   } as any,
+    //   options: {
+    //     token: 'options token',
+    //     key: 'options key'
+    //   } as any,
+    //   progressItem: {} as any
+    // })
+
+    // let doc1Data = readFileSync(articleInfo.saveFilePath).toString()
+    // doc1Data = doc1Data.replace(/\.\/img.*?-(\d{6})\./g, (match, random) => {
+    //   return match.replace(random, '123456')
+    // })
+    // expect(doc1Data).toMatchSnapshot()
+    // const imgList = readdirSync(`${articleInfo.savePath}/img/${articleInfo.uuid}`)
+    // expect(readFileSync(`${articleInfo.savePath}/img/${articleInfo.uuid}/${imgList[0]}`).length).toBe(99892)
+
+    const requestPromise = downloadArticle({
       articleInfo,
       progressBar: {
         pause: vi.fn(),
@@ -173,14 +199,7 @@ describe('downloadArticle', () => {
       } as any,
       progressItem: {} as any
     })
-
-    let doc1Data = readFileSync(articleInfo.saveFilePath).toString()
-    doc1Data = doc1Data.replace(/\.\/img.*?-(\d{6})\./g, (match, random) => {
-      return match.replace(random, '123456')
-    })
-    expect(doc1Data).toMatchSnapshot()
-    const imgList = readdirSync(`${articleInfo.savePath}/img/${articleInfo.uuid}`)
-    expect(readFileSync(`${articleInfo.savePath}/img/${articleInfo.uuid}/${imgList[0]}`).length).toBe(99892)
+    await expect(requestPromise).rejects.toThrow('download article Error: 暂不支持“表格类型”的文档')
   })
 
   it('sheet type parse error', async () => {
@@ -194,9 +213,10 @@ describe('downloadArticle', () => {
       articleUrl: 'https://www.yuque.com/yuque/base1/one',
       itemUrl: 'sheetError',
       bookId: 1111,
+      id: 1111,
       imageServiceDomains: ['gxr404.com']
     }
-    const requestPromise =  downloadArticle({
+    const requestPromise = downloadArticle({
       articleInfo,
       progressBar: {
         pause: vi.fn(),
@@ -208,7 +228,8 @@ describe('downloadArticle', () => {
       } as any,
       progressItem: {} as any
     })
-    await expect(requestPromise).rejects.toThrow(/download article Error: “表格类型”解析错误 SyntaxError: Unexpected token/)
+    // await expect(requestPromise).rejects.toThrow(/download article Error: “表格类型”解析错误 SyntaxError: Unexpected token/)
+    await expect(requestPromise).rejects.toThrow('download article Error: 暂不支持“表格类型”的文档')
   })
 
   it('custom key token', async () => {
@@ -222,6 +243,7 @@ describe('downloadArticle', () => {
       articleUrl: 'https://www.yuque.com/yuque/base1/one',
       itemUrl: 'tokenAndKey',
       bookId: 1111,
+      id: 1111,
       imageServiceDomains: ['gxr404.com']
     }
     await downloadArticle({
@@ -251,6 +273,7 @@ describe('downloadArticle', () => {
       articleUrl: 'https://www.yuque.com/api/docs/attachments',
       itemUrl: 'attachments',
       bookId: 1111,
+      id: 1111,
       imageServiceDomains: ['gxr404.com']
     }
     await downloadArticle({

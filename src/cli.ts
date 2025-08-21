@@ -7,7 +7,7 @@ import { main } from './index'
 import { logger } from './utils'
 import { runServer } from './server'
 
-import type { CACHelpSection, ICliOptions, IServerCliOptions } from './types'
+import type { CACHelpSection, ICliOptions, IServerCliOptions, IConvertOptions } from './types'
 
 const cli = cac('yuque-dl')
 
@@ -79,6 +79,40 @@ cli
       await runServer(serverPath, options)
     } catch (err) {
       logger.error(err.message || 'unknown exception')
+      process.exit(1)
+    }
+  })
+
+cli
+  .command('convert <sourceDir>', '将 markdown 文件中的图片转换为 base64 嵌入')
+  .option('-o, --output <dir>', '输出目录{CUSTOM_NEW_LINE(默认：<sourceDir>-base64)}')
+  .option('--overwrite', '覆盖已存在的输出目录', {
+    default: false
+  })
+  .action(async (sourceDir: string, options: IConvertOptions) => {
+    try {
+      logger.info('=== Yuque-dl Convert Command Started ===')
+      logger.info(`Command: convert`)
+      logger.info(`Source directory: ${sourceDir}`)
+      logger.info(`Options: ${JSON.stringify(options)}`)
+      logger.info(`Node version: ${process.version}`)
+      logger.info(`CLI version: ${version}`)
+      
+      const { convertMarkdownImages } = await import('./convert/index')
+      await convertMarkdownImages(sourceDir, options)
+      
+      logger.info('=== Convert Command Completed Successfully ===')
+      process.exit(0)
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : String(err)
+      logger.error(`Convert command failed: ${errorMessage}`)
+      logger.error('=== Convert Command Failed ===')
+      
+      // Log stack trace for debugging if available
+      if (err instanceof Error && err.stack) {
+        logger.debug(`Stack trace: ${err.stack}`)
+      }
+      
       process.exit(1)
     }
   })

@@ -59,6 +59,7 @@ export interface ArticleInfo {
   uuid: string,
   articleTitle: string,
   articleUrl: string,
+  id: number,
   host?: string,
   imageServiceDomains: string[]
 }
@@ -194,7 +195,7 @@ export interface IReqHeader {
 }
 export interface GetHeaderParams {
   /** token key */
-  key?:string,
+  key?: string,
   /** token value */
   token?: string
 }
@@ -203,9 +204,11 @@ export type TGetKnowledgeBaseInfo = (url: string, headerParams: GetHeaderParams)
 export interface GetMdDataParams {
   articleUrl: string,
   bookId: number,
+  id: number, 
   host?: string
   token?: string,
   key?: string
+  itemUrl?: string,
 }
 export interface IGetDocsMdDataRes {
   apiUrl: string,
@@ -213,6 +216,67 @@ export interface IGetDocsMdDataRes {
   response?: ArticleResponse.RootObject
 }
 export type TGetMdData = (params: GetMdDataParams, isMd?: boolean) => Promise<IGetDocsMdDataRes>
+
+export interface IExportRequestRes {
+  apiUrl: string,
+  httpStatus: number,
+  response?: { data: { state: string, url?: string } }
+}
+
+export interface IExportStatusRes {
+  success: boolean,
+  url?: string,
+  error?: string,
+  apiUrl: string,
+  httpStatus: number
+}
+
+export interface IDownloadFileRes {
+  data: ArrayBuffer,
+  httpStatus: number
+}
+
+// ---------------- Convert (Markdown Image Base64 Converter)
+
+export interface IConvertOptions {
+  /** 输出目录 */
+  output?: string
+  /** 是否覆盖已存在的目录 */
+  overwrite: boolean
+}
+
+export interface IConvertResult {
+  /** 处理的 markdown 文件总数 */
+  totalFiles: number
+  /** 成功转换的图片数量 */
+  convertedImages: number
+  /** 跳过的图片数量（远程链接等） */
+  skippedImages: number
+  /** 警告信息列表 */
+  warnings: string[]
+  /** 错误信息列表 */
+  errors: string[]
+}
+
+export interface IMarkdownFile {
+  /** 文件的相对路径 */
+  relativePath: string
+  /** 文件的绝对路径 */
+  absolutePath: string
+  /** 文件内容 */
+  content: string
+}
+
+export interface IImageReference {
+  /** 图片的原始 markdown 语法 */
+  originalMarkdown: string
+  /** 图片的相对路径 */
+  imagePath: string
+  /** 图片的绝对路径 */
+  absoluteImagePath: string
+  /** 图片的 alt 文本 */
+  altText: string
+}
 
 export * from './ArticleResponse'
 export * from './KnowledgeBaseResponse'

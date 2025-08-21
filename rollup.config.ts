@@ -7,10 +7,11 @@ export default defineConfig({
     index: 'src/index.ts',
     cli: 'src/cli.ts'
   },
-  output:[
+  output: [
     {
       format: 'es',
       dir: 'dist/es',
+      sourcemap: true,
     },
   ],
   plugins: [
