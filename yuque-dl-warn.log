@@ -1,0 +1,161 @@
+2025-08-19 19:58:55 [ERROR] yuque-dl - 本次执行总数126篇，✕ 失败1篇
+
+2025-08-19 19:58:55 [ERROR] yuque-dl - 《2线下PoC用户运营/2.1线下poc会议纪要/人工智能所/pocsow.md》: https://taichu-mp.yuque.com/dcoqry/tqluwv/igiulm129abg19oy
+
+2025-08-19 19:58:55 [ERROR] yuque-dl - ———— ✕ download article Error: "表格类型"导出失败 Export timeout
+
+2025-08-20 12:02:49 [WARN] yuque-dl - 该知识库存在以下外链文章
+
+2025-08-20 12:02:49 [WARN] yuque-dl - ———— ✕ 其他/规划汇总【6-8月】/poc体验中心规划 https://alidocs.dingtalk.com/i/nodes/qnYMoO1rWxnXpM2PHOxwgkYaJ47Z3je9
+
+2025-08-20 12:02:49 [WARN] yuque-dl - ———— ✕ 其他/规划汇总【6-8月】/poc体验中心专项列表【产品侧】 https://taichu-mp.yuque.com/dcoqry/homovd/vs14ffax68sbv23k#fBm7
+
+2025-08-20 12:02:49 [ERROR] yuque-dl - 本次执行总数1373篇，✕ 失败57篇
+
+2025-08-20 12:02:49 [ERROR] yuque-dl - 《4.技术设计/性能测试/二轮接口性能测试/集群概览、节点管理和操作审计压测/index.md》: https://taichu-mp.yuque.com/dcoqry/dtpup9/rb4g08nr0mhszitb
+
+2025-08-20 12:02:49 [ERROR] yuque-dl - ———— ✕ download article Error: "表格类型"导出失败 Export timeout
+
+2025-08-20 12:02:49 [ERROR] yuque-dl - 《4.技术设计/性能测试/二轮接口性能测试/监控运维压测/index.md》: https://taichu-mp.yuque.com/dcoqry/dtpup9/zomvayc78qgecrzh
+2025-08-20 14:34:54 [WARN] yuque-dl - 该知识库存在以下外链文章
+
+2025-08-20 14:34:54 [WARN] yuque-dl - ———— ✕ 其他/规划汇总【6-8月】/poc体验中心规划 https://alidocs.dingtalk.com/i/nodes/qnYMoO1rWxnXpM2PHOxwgkYaJ47Z3je9
+
+2025-08-20 14:34:54 [WARN] yuque-dl - ———— ✕ 其他/规划汇总【6-8月】/poc体验中心专项列表【产品侧】 https://taichu-mp.yuque.com/dcoqry/homovd/vs14ffax68sbv23k#fBm7
+
+2025-08-20 14:34:54 [ERROR] yuque-dl - 本次执行总数1373篇，✕ 失败39篇
+
+2025-08-20 14:34:54 [ERROR] yuque-dl - 《3.版本管理/3.3版本计划/2024.07/技术设计文档/裸金属技术架构设计.md》: https://taichu-mp.yuque.com/dcoqry/dtpup9/si1babbvagfuk19t
+
+2025-08-20 16:05:23 [WARN] yuque-dl - 该知识库存在以下外链文章
+
+2025-08-20 16:05:23 [WARN] yuque-dl - ———— ✕ 其他/规划汇总【6-8月】/poc体验中心规划 https://alidocs.dingtalk.com/i/nodes/qnYMoO1rWxnXpM2PHOxwgkYaJ47Z3je9
+
+2025-08-20 16:05:23 [WARN] yuque-dl - ———— ✕ 其他/规划汇总【6-8月】/poc体验中心专项列表【产品侧】 https://taichu-mp.yuque.com/dcoqry/homovd/vs14ffax68sbv23k#fBm7
+
+2025-08-20 16:05:23 [ERROR] yuque-dl - 本次执行总数1373篇，✕ 失败38篇
+
+2025-08-20 16:05:23 [ERROR] yuque-dl - 《4.技术设计/性能测试/二轮接口性能测试/集群概览、节点管理和操作审计压测/index.md》: https://taichu-mp.yuque.com/dcoqry/dtpup9/rb4g08nr0mhszitb
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/D:\images\md\1692941692014.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Failed to convert image: D:\images\md\1692941692014.png - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/D:\images\md\1692941692014.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/D:\images\md\1692942024470.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Failed to convert image: D:\images\md\1692942024470.png - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/D:\images\md\1692942024470.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/D:\images\md\1692942176785.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Failed to convert image: D:\images\md\1692942176785.png - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/D:\images\md\1692942176785.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/D:\images\md\1692942267792.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Failed to convert image: D:\images\md\1692942267792.png - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/D:\images\md\1692942267792.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/C:\Users\ADMINI~1\AppData\Local\Temp\1692942532978.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Failed to convert image: C:\Users\ADMINI~1\AppData\Local\Temp\1692942532978.png - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/C:\Users\ADMINI~1\AppData\Local\Temp\1692942532978.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/C:\Users\ADMINI~1\AppData\Local\Temp\1692943000627.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Failed to convert image: C:\Users\ADMINI~1\AppData\Local\Temp\1692943000627.png - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/C:\Users\ADMINI~1\AppData\Local\Temp\1692943000627.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/D:\images\md\1692943372138.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Failed to convert image: D:\images\md\1692943372138.png - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/D:\images\md\1692943372138.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/D:\images\md\1692943449288.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Failed to convert image: D:\images\md\1692943449288.png - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/D:\images\md\1692943449288.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/D:\images\md\1692943695094.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Failed to convert image: D:\images\md\1692943695094.png - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/D:\images\md\1692943695094.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/C:\Users\ADMINI~1\AppData\Local\Temp\1692943767808.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Failed to convert image: C:\Users\ADMINI~1\AppData\Local\Temp\1692943767808.png - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/C:\Users\ADMINI~1\AppData\Local\Temp\1692943767808.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/D:\images\md\1692943908406.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Failed to convert image: D:\images\md\1692943908406.png - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/D:\images\md\1692943908406.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/D:\images\md\1692944157024.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Failed to convert image: D:\images\md\1692944157024.png - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/D:\images\md\1692944157024.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/D:\images\md\1692944405254.png
+
+2025-08-20 16:21:57 [WARN] yuque-dl - Failed to convert image: D:\images\md\1692944405254.png - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/11.测试设计&用例/测试资料/个人文档/attachments/qeD1r8dWg_Z14lqY/D:\images\md\1692944405254.png
+
+2025-08-20 16:22:07 [WARN] yuque-dl - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/8.专题专项/2023年/多级存储系统/6、测试相关/存储测试体系建立/性能测试方法和工具/mdtest%E5%AE%89%E8%A3%85.assets/image-20230926174419173.png
+
+2025-08-20 16:22:07 [WARN] yuque-dl - Failed to convert image: ./mdtest%E5%AE%89%E8%A3%85.assets/image-20230926174419173.png - Image file not found or not readable: /home/liuqw/workspace/yuque-dl/download/算力管理服务平台产品材料/8.专题专项/2023年/多级存储系统/6、测试相关/存储测试体系建立/性能测试方法和工具/mdtest%E5%AE%89%E8%A3%85.assets/image-20230926174419173.png
+
+2025-08-20 16:22:07 [WARN] yuque-dl - ⚠️  跳过图片数: 14
+
+2025-08-20 18:58:00 [ERROR] yuque-dl - 本次执行总数67篇，✕ 失败5篇
+
+2025-08-20 18:58:00 [ERROR] yuque-dl - 《算力平台专项/index.md》: https://taichu-mp.yuque.com/dcoqry/homovd/vswvpwcrg3bb4gnf
+
+2025-08-20 18:58:00 [ERROR] yuque-dl - ———— ✕ download article Error: "表格类型"导出失败 Request failed with status code 400
+
+2025-08-20 18:58:00 [ERROR] yuque-dl - 《算力平台专项/POC体验中心优化进展.md》: https://taichu-mp.yuque.com/dcoqry/homovd/vs14ffax68sbv23k
+
+2025-08-20 19:09:12 [ERROR] yuque-dl - 本次执行总数23篇，✕ 失败2篇
+
+2025-08-20 19:09:12 [ERROR] yuque-dl - 《硬件产品文档/产品roadmap.md》: https://taichu-mp.yuque.com/dcoqry/ld2282/hvl715rilg2sigwc
+
+2025-08-20 19:09:12 [ERROR] yuque-dl - ———— ✕ download article Error: "表格类型"导出失败 Export timeout
+
+2025-08-20 19:09:12 [ERROR] yuque-dl - 《产品FAQ/index.md》: https://taichu-mp.yuque.com/dcoqry/ld2282/ynzit9oroaa78g6k
+
+2025-08-20 19:43:20 [ERROR] yuque-dl - 本次执行总数217篇，✕ 失败6篇
+
+2025-08-20 19:43:20 [ERROR] yuque-dl - 《1.需求管理/1.3用户管理系统/用户管理系统l2023.09.md》: https://taichu-mp.yuque.com/dcoqry/project_doc/sgncbh382tb44ucg
+
+2025-08-20 19:43:20 [ERROR] yuque-dl - ———— ✕ download article Error: "表格类型"导出失败 Export timeout
+
+2025-08-20 19:43:20 [ERROR] yuque-dl - 《1.需求管理/1.6报价管理系统.md》: https://taichu-mp.yuque.com/dcoqry/project_doc/ivovgo3kicwcapee
+
+2025-08-20 20:28:17 [ERROR] yuque-dl - 本次执行总数545篇，✕ 失败4篇
+
+2025-08-20 20:28:17 [ERROR] yuque-dl - 《朱喜超/学习/学习思维导图.md》: https://taichu-mp.yuque.com/dcoqry/tf6dgu/hivnzy4wdray80hm
+
+2025-08-20 20:28:17 [ERROR] yuque-dl - ———— ✕ download article Error: "画板类型"导出失败 没有获得图板URL
+
+2025-08-20 20:28:17 [ERROR] yuque-dl - 《胡冉熙/学习/无标题画板.md》: https://taichu-mp.yuque.com/dcoqry/tf6dgu/bdykntvpa8opu4sg
+
+2025-08-21 10:20:58 [ERROR] yuque-dl - 本次执行总数545篇，✕ 失败57篇
+
+2025-08-21 10:20:58 [ERROR] yuque-dl - 《朱喜超/学习/学习思维导图.md》: https://taichu-mp.yuque.com/dcoqry/tf6dgu/hivnzy4wdray80hm
+
+2025-08-21 10:20:58 [ERROR] yuque-dl - ———— ✕ download article Error: "画板类型"导出失败 没有获得图板URL
+
+2025-08-21 10:20:58 [ERROR] yuque-dl - 《胡冉熙/学习/无标题画板.md》: https://taichu-mp.yuque.com/dcoqry/tf6dgu/bdykntvpa8opu4sg
+
+2025-08-21 10:45:51 [ERROR] yuque-dl - 本次执行总数545篇，✕ 失败4篇
+
+2025-08-21 10:45:51 [ERROR] yuque-dl - 《朱喜超/学习/学习思维导图.md》: https://taichu-mp.yuque.com/dcoqry/tf6dgu/hivnzy4wdray80hm
+
+2025-08-21 10:45:51 [ERROR] yuque-dl - ———— ✕ download article Error: "画板类型"导出失败 没有获得图板URL
+
+2025-08-21 10:45:51 [ERROR] yuque-dl - 《胡冉熙/学习/无标题画板.md》: https://taichu-mp.yuque.com/dcoqry/tf6dgu/bdykntvpa8opu4sg
+
+2025-08-21 16:33:38 [ERROR] yuque-dl - 本次执行总数52篇，✕ 失败3篇
+
+2025-08-21 16:33:38 [ERROR] yuque-dl - 《吉平/张杏齐/Q3/总结.md》: https://taichu-mp.yuque.com/dcoqry/hmxie8/cm4osrktcffkeyb2
+
+2025-08-21 16:33:38 [ERROR] yuque-dl - ———— ✕ download article Error: "表格类型"导出失败 Request failed with status code 400
+
+2025-08-21 16:33:38 [ERROR] yuque-dl - 《吉平/张杏齐/Q4.md》: https://taichu-mp.yuque.com/dcoqry/hmxie8/ttgzh0gg6os5e48h
+
+2025-08-21 16:49:14 [ERROR] yuque-dl - 本次执行总数114篇，✕ 失败12篇
+
+2025-08-21 16:49:14 [ERROR] yuque-dl - 《3.硬件产品/计算产品规划/PCIE服务器配置.md》: https://taichu-mp.yuque.com/dcoqry/cf_records/fcy1ygdpmz2ro3tx
+
+2025-08-21 16:49:14 [ERROR] yuque-dl - ———— ✕ download article Error: "表格类型"导出失败 Export timeout
+
+2025-08-21 16:49:14 [ERROR] yuque-dl - 《4.基础软件产品/软件栈1.0规划.md》: https://taichu-mp.yuque.com/dcoqry/cf_records/wae8lc5g780nis9g
+
